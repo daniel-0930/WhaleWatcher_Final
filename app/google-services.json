@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "418603258640",
+    "firebase_url": "https://whalewatcher-1503904899695.firebaseio.com",
+    "project_id": "whalewatcher-1503904899695",
+    "storage_bucket": "whalewatcher-1503904899695.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418603258640:android:6e0d478d3ed3492b",
+        "android_client_info": {
+          "package_name": "com.a310p.radical.whalewatcher_final"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "418603258640-4msghlctgkh6hr09nsm2t1k33mtt6cft.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWgf1_0SL19OB2tkvrBwxhVSdYYjQmXGE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

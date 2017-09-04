@@ -104,6 +104,7 @@
                     android:fontFamily="casual"
                     android:text="Whale Weight"
                     android:textColor="@android:color/background_dark"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -159,6 +160,7 @@
                 android:fontFamily="casual"
                 android:text="Possible Site"
                 android:textColor="@android:color/background_dark"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -181,7 +183,7 @@
                 android:fontFamily="casual"
                 android:text="Possible Month"
                 android:textColor="@android:color/background_dark"
-                android:textSize="18sp"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -204,7 +206,7 @@
                 android:fontFamily="casual"
                 android:text="Color and Feature"
                 android:textColor="@android:color/background_dark"
-                android:textSize="18sp"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -226,7 +228,7 @@
                 android:fontFamily="casual"
                 android:text="Description"
                 android:textColor="@android:color/background_dark"
-                android:textSize="18sp"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -249,6 +251,7 @@
                 android:fontFamily="casual"
                 android:text="Habitat"
                 android:textColor="@android:color/background_dark"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
             <TextView

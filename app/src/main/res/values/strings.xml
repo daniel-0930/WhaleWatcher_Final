@@ -20,4 +20,8 @@
         <item>November</item>
         <item>December</item>
     </string-array>
+    <string name="title_activity_blow">Blow Type</string>
+    <string name="title_activity_surface">Surfacing Type</string>
+    <string name="title_activity_dive">Diving Type</string>
+    <string name="title_activity_search">Search For Whales Information</string>
 </resources>

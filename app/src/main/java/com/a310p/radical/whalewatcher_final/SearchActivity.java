@@ -2,9 +2,10 @@ package com.a310p.radical.whalewatcher_final;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -20,6 +21,8 @@ import android.widget.Toast;
 import com.a310p.radical.whalewatcher_final.Models.Whale;
 
 import java.util.ArrayList;
+import android.view.inputmethod.InputMethodManager;
+import android.content.Context;
 
 public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
@@ -46,17 +49,25 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     private ArrayList<Whale> whaleList;
     private DatabaseHelper databaseHelper;
     private Whale whale;
+    private ArrayList<Whale> currentWhaleList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.searchToolbar);
+        setSupportActionBar(toolbar);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         databaseHelper = new DatabaseHelper(getApplicationContext());
 
         if(databaseHelper.getAllWhale().size() == 0){
             databaseHelper.createWhaleDatabase();
         }
+
 
         searchView = (SearchView)findViewById(R.id.searchView);
         orLabel = (TextView)findViewById(R.id.orLabel);
@@ -89,9 +100,12 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             @Override
             public void onClick(View view) {
                 searchView.setQuery("",false);
-                searchView.setAlpha(1.0f);
-                orLabel.setAlpha(1.0f);
-                selectionTable.setAlpha(1.0f);
+                searchView.setVisibility(View.VISIBLE);
+                orLabel.setVisibility(View.VISIBLE);
+                selectionTable.setVisibility(View.VISIBLE);
+                currentWhaleList = new ArrayList<Whale>();
+                whaleSearchAdapter = new WhaleSearchAdapter(SearchActivity.this,currentWhaleList);
+                searchList.setAdapter(whaleSearchAdapter);
             }
         });
 
@@ -101,9 +115,9 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             searchButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    searchView.setAlpha(0.0f);
+                    currentWhaleList = new ArrayList<>();
+                    searchView.setVisibility(View.GONE);
                     whaleList = new ArrayList<>(databaseHelper.getAllWhale().values());
-                    ArrayList<Whale> currentWhaleList = new ArrayList<>();
                     String month = monthSpinner.getSelectedItem().toString();
                     if(largeRadio.isChecked())
                     {
@@ -133,6 +147,11 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                             if(greyCheck.isChecked()){
                                 if(w.getLength()>=10 && w.getPossibleMonth().contains(month) && ( w.getFeature().contains("gray")||w.getFeature().contains("grey")) &&checkExist(currentWhaleList,w))
                                 {
+                                    currentWhaleList.add(w);
+                                }
+                            }
+                            if(!greyCheck.isChecked()&&!whiteCheck.isChecked()&&!blackCheck.isChecked()&&!blueCheck.isChecked()){
+                                if(w.getPossibleMonth().contains(month)&&checkExist(currentWhaleList,w)){
                                     currentWhaleList.add(w);
                                 }
                             }
@@ -170,10 +189,15 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                                     currentWhaleList.add(w);
                                 }
                             }
+                            if(!greyCheck.isChecked()&&!whiteCheck.isChecked()&&!blackCheck.isChecked()&&!blueCheck.isChecked()){
+                                if(w.getPossibleMonth().contains(month)&&checkExist(currentWhaleList,w)){
+                                    currentWhaleList.add(w);
+                                }
+                            }
 
 
                         }
-                    }else if(allRadio.isChecked()){
+                    }else if((allRadio.isChecked())|| (!largeRadio.isChecked()&&!smallRadio.isChecked()&&!allRadio.isChecked())){
                         for(Whale w : whaleList)
                         {
                             if(blueCheck.isChecked()){
@@ -203,6 +227,11 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                                     currentWhaleList.add(w);
                                 }
                             }
+                            if(!greyCheck.isChecked()&&!whiteCheck.isChecked()&&!blackCheck.isChecked()&&!blueCheck.isChecked()){
+                                if(w.getPossibleMonth().contains(month)&&checkExist(currentWhaleList,w)){
+                                    currentWhaleList.add(w);
+                                }
+                            }
 
 
                         }
@@ -227,7 +256,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                searchView.setAlpha(1.0f);
+                searchView.setVisibility(View.VISIBLE);
                 largeRadio.setChecked(false);
                 smallRadio.setChecked(false);
                 allRadio.setChecked(false);
@@ -244,7 +273,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         searchList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Whale whale = whaleList.get(position);
+                Whale whale = currentWhaleList.get(position);
                 Intent informationIntent = new Intent(SearchActivity.this,WhaleInformationActivity.class);
                 informationIntent.putExtra("whale",whale);
                 startActivity(informationIntent);
@@ -254,9 +283,10 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
     @Override
     public boolean onQueryTextSubmit(String query) {
+        InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        mgr.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
         whaleList = new ArrayList<>(databaseHelper.getAllWhale().values());
-        ArrayList<Whale> currentWhaleList = new ArrayList<>();
-
+        currentWhaleList = new ArrayList<>();
         //Put the result into searching result array
         for(Whale w : whaleList)
         {
@@ -285,14 +315,22 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     @Override
     public boolean onQueryTextChange(String newText) {
         if(!newText.trim().equals("")){
-            orLabel.setAlpha(0.0f);
-            selectionTable.setAlpha(0.0f);
+            orLabel.setVisibility(View.GONE);
+            selectionTable.setVisibility(View.GONE);
         }
         if(newText.trim().equals("")){
-            orLabel.setAlpha(1.0f);
-            selectionTable.setAlpha(1.0f);
+            orLabel.setVisibility(View.VISIBLE);
+            selectionTable.setVisibility(View.VISIBLE);
         }
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(item.getItemId() == R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
