@@ -7,7 +7,9 @@ import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,6 +37,17 @@ public class WhaleInformationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_whale_information);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.whaleInformationToolbar);
+        setSupportActionBar(toolbar);
+
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+
+
         Intent whaleIntent = getIntent();
         whale = whaleIntent.getParcelableExtra("whale");
 
@@ -49,14 +62,6 @@ public class WhaleInformationActivity extends AppCompatActivity {
         habitatText = (TextView)findViewById(R.id.habitatText);
         scNameText = (TextView)findViewById(R.id.scNameText);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent backIntent = new Intent(WhaleInformationActivity.this,MainActivity.class);
-                startActivity(backIntent);
-            }
-        });
 
         new DownloadImageTask(whalePic).execute(whale.getUrl());
         nameText.setText(whale.getName());
@@ -94,4 +99,13 @@ public class WhaleInformationActivity extends AppCompatActivity {
             bmImage.setImageBitmap(result);
         }
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(item.getItemId() == android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

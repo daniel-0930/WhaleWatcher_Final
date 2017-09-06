@@ -21,9 +21,4 @@
         android:orderInCategory="4"
         android:title="Reset"
         app:showAsAction="never" />
-    <item
-        android:id = "@+id/report_site"
-        android:orderInCategory="5"
-        android:title="Report to Us of Whale"
-        app:showAsAction="never" />
 </menu>

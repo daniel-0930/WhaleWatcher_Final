@@ -24,4 +24,8 @@
     <string name="title_activity_surface">Surfacing Type</string>
     <string name="title_activity_dive">Diving Type</string>
     <string name="title_activity_search">Search For Whales Information</string>
+    <string name="title_activity_list_whale">ListWhaleActivity</string>
+    <string name="title_activity_site">Find a Whale Site</string>
+    <string name="title_activity_whale_information">Whale Information</string>
+    <string name="title_activity_selection">Selecting the type of Whale</string>
 </resources>

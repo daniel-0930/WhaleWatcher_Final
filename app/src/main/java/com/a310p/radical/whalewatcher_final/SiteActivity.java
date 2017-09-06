@@ -13,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -110,10 +111,18 @@ public class SiteActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_site);
 
         if(savedInstanceState != null){
             lastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
             cameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
+        }
+        Toolbar toolbar = (Toolbar) findViewById(R.id.siteToolbar);
+        setSupportActionBar(toolbar);
+
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
         blueList = new ArrayList<>();
@@ -134,8 +143,6 @@ public class SiteActivity extends AppCompatActivity implements OnMapReadyCallbac
         MINKENUMBER = 0;
         KILLERNUMBER= 0 ;
 
-
-        setContentView(R.layout.activity_site);
         geoDataClient = Places.getGeoDataClient(this,null);
         placeDetectionClient = Places.getPlaceDetectionClient(this,null);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -168,13 +175,13 @@ public class SiteActivity extends AppCompatActivity implements OnMapReadyCallbac
             selectLastMonthAll();
         } else if(item.getItemId()== R.id.this_year){
             selectThisYearAll();
-        } else if(item.getItemId() == R.id.report_site){
-            Intent reportIntent = new Intent(SiteActivity.this,SelectionActivity.class);
-            startActivity(reportIntent);
         } else if(item.getItemId() == R.id.reset){
             selectAll();
+        } else if (item.getItemId() == android.R.id.home)
+        {
+            finish();
         }
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -216,8 +223,7 @@ public class SiteActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         getDeviceLocation();
 
-
-
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-23.6980,133.8807),3));
 
     }
 
@@ -520,5 +526,7 @@ public class SiteActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         }
     }
+
+
 
 }

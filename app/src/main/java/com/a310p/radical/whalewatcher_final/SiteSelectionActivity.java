@@ -111,15 +111,14 @@ public class SiteSelectionActivity extends AppCompatActivity implements OnMapRea
         updateLocationUI();
 
         getDeviceLocation();
-        showADialog("Congratulations!","Lucky! You saw a "+whalename);
-
+        showADialog("Congratulations!","Lucky! You saw a "+whalename+"\n Please LONG PRESS to add the Location of "+whalename);
 
         map.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
             public void onMapLongClick(LatLng latLng) {
 
 
-
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,13));
                 if(!checkLocationInTheSea(latLng)){
                     showADialog("Wrong Place!","Whales could not live without SEA!");
                 } else{

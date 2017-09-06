@@ -3,6 +3,8 @@ package com.a310p.radical.whalewatcher_final;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 
@@ -16,6 +18,13 @@ public class SelectionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selection);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.selectionToolbar);
+        setSupportActionBar(toolbar);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         blowButton =(RadioButton)findViewById(R.id.blowRadio);
         surfaceButton = (RadioButton)findViewById(R.id.surfaceRadio);
@@ -58,4 +67,13 @@ public class SelectionActivity extends AppCompatActivity {
         startActivity(newIntent);
         finish();
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(item.getItemId() == android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

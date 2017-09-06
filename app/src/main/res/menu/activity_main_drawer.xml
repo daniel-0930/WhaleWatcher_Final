@@ -8,8 +8,12 @@
             android:title="Search for Whale" />
         <item
             android:id="@+id/nav_site"
-            android:icon="@android:drawable/ic_menu_mylocation"
+            android:icon="@android:drawable/ic_menu_mapmode"
             android:title="Site to watch" />
+        <item
+            android:id="@+id/nav_report"
+            android:icon="@android:drawable/ic_menu_myplaces"
+            android:title="Report to Us" />
         <item
             android:id="@+id/nav_picture"
             android:icon="@drawable/ic_menu_gallery"

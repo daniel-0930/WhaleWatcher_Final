@@ -55,6 +55,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.searchToolbar);
         setSupportActionBar(toolbar);
         if(getSupportActionBar()!=null){
@@ -327,7 +328,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        if(item.getItemId() == R.id.home){
+        if(item.getItemId() == android.R.id.home){
             finish();
         }
         return super.onOptionsItemSelected(item);

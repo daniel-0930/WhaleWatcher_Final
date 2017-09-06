@@ -80,6 +80,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_contact) {
             Intent contactStep = new Intent(MainActivity.this, ContactUsActivity.class);
             startActivity(contactStep);
+        } else if(id == R.id.nav_report){
+            Intent reportStep = new Intent(MainActivity.this, SelectionActivity.class);
+            startActivity(reportStep);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

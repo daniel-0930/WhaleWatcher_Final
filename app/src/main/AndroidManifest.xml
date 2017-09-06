@@ -34,7 +34,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SiteActivity"
-            android:label="Where can I watch the Whales" />
+            android:label="@string/title_activity_site"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".GallaryActivity"
             android:label="Whale Gallary" />
@@ -44,7 +45,10 @@
         <activity
             android:name=".ContactUsActivity"
             android:label="Contact Us" />
-        <activity android:name=".WhaleInformationActivity" />
+        <activity
+            android:name=".WhaleInformationActivity"
+            android:label="@string/title_activity_whale_information"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -54,7 +58,9 @@
             android:value="AIzaSyC89pEn1xIMmtskn4FSWJyZ8CaEAZArhoM" />
 
         <activity android:name=".SiteSelectionActivity" />
-        <activity android:name=".SelectionActivity" />
+        <activity android:name=".SelectionActivity"
+            android:label="@string/title_activity_selection"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".BlowActivity"
             android:label="@string/title_activity_blow"
@@ -66,6 +72,10 @@
         <activity
             android:name=".DiveActivity"
             android:label="@string/title_activity_dive"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ListWhaleActivity"
+            android:label="@string/title_activity_list_whale"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
