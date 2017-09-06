@@ -61,12 +61,6 @@ public class SelectionActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed(){
-        Intent newIntent = new Intent(SelectionActivity.this, SiteActivity.class);
-        startActivity(newIntent);
-        finish();
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){

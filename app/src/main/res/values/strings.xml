@@ -28,4 +28,9 @@
     <string name="title_activity_site">Find a Whale Site</string>
     <string name="title_activity_whale_information">Whale Information</string>
     <string name="title_activity_selection">Selecting the type of Whale</string>
+    <string name="title_acitivity_siteselection">Pin the Location you saw a Whale</string>
+    <string name="title_activity_gallery">Gallery of Whale</string>
+    <string name="title_activity_about_us">About Us</string>
+    <string name="title_activity_contact_us">Contact Us</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>

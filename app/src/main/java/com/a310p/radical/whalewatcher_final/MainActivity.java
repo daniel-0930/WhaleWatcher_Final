@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(siteStep);
 
         } else if (id == R.id.nav_picture) {
-            Intent pictureStep = new Intent(MainActivity.this, GallaryActivity.class);
+            Intent pictureStep = new Intent(MainActivity.this, GalleryActivity.class);
             startActivity(pictureStep);
         } else if (id == R.id.nav_about) {
             Intent aboutStep = new Intent(MainActivity.this, AboutUsActivity.class);
