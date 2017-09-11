@@ -20,6 +20,7 @@
         <item>November</item>
         <item>December</item>
     </string-array>
+
     <string name="title_activity_blow">Blow Type</string>
     <string name="title_activity_surface">Surfacing Type</string>
     <string name="title_activity_dive">Diving Type</string>
@@ -33,4 +34,5 @@
     <string name="title_activity_about_us">About Us</string>
     <string name="title_activity_contact_us">Contact Us</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_test">TestActivity</string>
 </resources>

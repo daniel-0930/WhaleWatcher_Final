@@ -32,6 +32,9 @@ dependencies {
     compile 'com.google.android.gms:play-services-places:11.2.0'
     compile 'com.google.android.gms:play-services-location:11.2.0'
     compile 'com.google.firebase:firebase-database:11.2.0'
+    compile 'com.google.firebase:firebase-storage:11.2.0'
+    compile 'com.firebaseui:firebase-ui-storage:1.0.1'
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:gridlayout-v7:25.3.1'
 }
 apply plugin: 'com.google.gms.google-services'

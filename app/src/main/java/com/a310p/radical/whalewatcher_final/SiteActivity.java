@@ -18,7 +18,9 @@ import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -117,6 +119,8 @@ public class SiteActivity extends AppCompatActivity implements OnMapReadyCallbac
             lastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
             cameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
         }
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.siteToolbar);
         setSupportActionBar(toolbar);
 
@@ -158,6 +162,7 @@ public class SiteActivity extends AppCompatActivity implements OnMapReadyCallbac
         minkeList = addLocationToMap("Minke Whale");
         killerList = addLocationToMap("Killer Whale");
 
+
     }
 
     @Override
@@ -197,6 +202,7 @@ public class SiteActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
+
         map.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
             @Override
             public View getInfoWindow(Marker arg0) {
@@ -204,7 +210,7 @@ public class SiteActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
 
             @Override
-            public View getInfoContents(Marker marker) {
+            public View getInfoContents(final Marker marker) {
                 View inforWindow = getLayoutInflater().inflate(R.layout.custom_info_contents,(FrameLayout)findViewById(R.id.mapFragment),false);
 
                 TextView title = ((TextView)inforWindow.findViewById(R.id.titleText));
@@ -214,6 +220,26 @@ public class SiteActivity extends AppCompatActivity implements OnMapReadyCallbac
                 snippet.setText(marker.getSnippet());
 
                 return inforWindow;
+            }
+        });
+
+        map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+                        if(databaseHelper.getAllWhale().size()==0){
+                            databaseHelper.createWhaleDatabase();
+                        }
+                        ArrayList<Whale> whaleList = new ArrayList<Whale>(databaseHelper.getAllWhale().values());
+                        Intent newIntent = new Intent(SiteActivity.this,WhaleInformationActivity.class);
+                        for(Whale w: whaleList){
+                            if(marker.getTitle().equals(w.getName())){
+                                newIntent.putExtra("whale",w);
+                                startActivity(newIntent);
+                                return;
+                            }
+
+                        }
             }
         });
 
@@ -318,6 +344,7 @@ public class SiteActivity extends AppCompatActivity implements OnMapReadyCallbac
                     map.addMarker(new MarkerOptions().position(thisLocation).
                             title(whalename).snippet(timeString).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
+
                 }
                 if(whalename.equals("Blue Whale")){
                     BLUENUMBER = blueList.size();
@@ -375,49 +402,14 @@ public class SiteActivity extends AppCompatActivity implements OnMapReadyCallbac
                 String[] thisTime= w.getTime().split("-");
                 try {
                     Date datetime = new SimpleDateFormat("dd/MM/yyyy").parse(thisTime[2] + "/" + thisTime[1] + "/" + thisTime[0]);
-                    if(week==1){
-                        int weekDay = c.getFirstDayOfWeek();
-                        if(weekDay == 1){
-                            Date endate = new SimpleDateFormat("dd/MM/yyyy").parse("31/12/" + String.valueOf(year-1));
-                            Date startdate = new SimpleDateFormat("dd/MM/yyyy").parse("25/12/" + String.valueOf(year-1));
-                            if(datetime.after(startdate) && datetime.before(endate)){
-                                LatLng thisLocation = new LatLng(w.getLatitude(),w.getLongitude());
-                                String[] timeset = w.getTime().split("-");
-                                String timeString = timeset[0]+"/"+timeset[1]+"/"+timeset[2]+" "+timeset[3]+":"+timeset[4]+":"+timeset[5];
-                                map.addMarker(new MarkerOptions().position(thisLocation).
-                                        title(whalename).snippet(timeString).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-                            }
-                        } else{
-                            Date endDate = new SimpleDateFormat("dd/MM/yyyy").parse(String.valueOf(weekDay)+"/1/" + String.valueOf(year));
-                            Date startDate = new Date(endDate.getTime() - 604800000L);
-                            if(datetime.after(startDate) && datetime.before(endDate)){
-                                LatLng thisLocation = new LatLng(w.getLatitude(),w.getLongitude());
-                                String[] timeset = w.getTime().split("-");
-                                String timeString = timeset[0]+"/"+timeset[1]+"/"+timeset[2]+" "+timeset[3]+":"+timeset[4]+":"+timeset[5];
-                                map.addMarker(new MarkerOptions().position(thisLocation).
-                                        title(whalename).snippet(timeString).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-                            }
-
-                        }
-
-
-                    }else{
-                        c2.set(Calendar.WEEK_OF_YEAR,week-1);
-                        c2.set(Calendar.YEAR,year);
-
-                        int firstDayofWeek = c2.getFirstDayOfWeek();
-                        c2.set(Calendar.DAY_OF_WEEK, firstDayofWeek);
-                        Date firstDay = c2.getTime();
-
-                        Date lastDay = new Date(firstDay.getTime() + 604800000L);
-                        if(datetime.after(firstDay) && datetime.before(lastDay)){
-                            LatLng thisLocation = new LatLng(w.getLatitude(),w.getLongitude());
-                            String[] timeset = w.getTime().split("-");
-                            String timeString = timeset[0]+"/"+timeset[1]+"/"+timeset[2]+" "+timeset[3]+":"+timeset[4]+":"+timeset[5];
-                            map.addMarker(new MarkerOptions().position(thisLocation).
-                                    title(whalename).snippet(timeString).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-                        }
-
+                    Date endDate = c.getTime();
+                    Date startDate = new Date(endDate.getTime() - 604800000L);
+                    if(datetime.after(startDate) && datetime.before(endDate)){
+                        LatLng thisLocation = new LatLng(w.getLatitude(),w.getLongitude());
+                        String[] timeset = w.getTime().split("-");
+                        String timeString = timeset[0]+"/"+timeset[1]+"/"+timeset[2]+" "+timeset[3]+":"+timeset[4]+":"+timeset[5];
+                        map.addMarker(new MarkerOptions().position(thisLocation).
+                                title(whalename).snippet(timeString).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
                     }
                 }catch (ParseException ex){
                     Log.i("Error",ex.getMessage());
@@ -443,25 +435,22 @@ public class SiteActivity extends AppCompatActivity implements OnMapReadyCallbac
         Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH)+1;
-        if(locationList.size()!=0){
+        if(locationList.size()!=0) {
             for(WhaleLocation w: locationList){
-                if(month == 1){
-                    if(w.getTime().contains(String.valueOf(year-1)+"-"+String.valueOf(12))){
+                String[] thisTime= w.getTime().split("-");
+                try {
+                    Date datetime = new SimpleDateFormat("dd/MM/yyyy").parse(thisTime[2] + "/" + thisTime[1] + "/" + thisTime[0]);
+                    Date endDate = c.getTime();
+                    Date startDate = new Date(endDate.getTime() - 2592000000L);
+                    if(datetime.after(startDate) && datetime.before(endDate)){
                         LatLng thisLocation = new LatLng(w.getLatitude(),w.getLongitude());
                         String[] timeset = w.getTime().split("-");
                         String timeString = timeset[0]+"/"+timeset[1]+"/"+timeset[2]+" "+timeset[3]+":"+timeset[4]+":"+timeset[5];
                         map.addMarker(new MarkerOptions().position(thisLocation).
                                 title(whalename).snippet(timeString).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
                     }
-
-                }else{
-                    if(w.getTime().contains(String.valueOf(year)+"-"+String.valueOf(month-1))){
-                        LatLng thisLocation = new LatLng(w.getLatitude(),w.getLongitude());
-                        String[] timeset = w.getTime().split("-");
-                        String timeString = timeset[0]+"/"+timeset[1]+"/"+timeset[2]+" "+timeset[3]+":"+timeset[4]+":"+timeset[5];
-                        map.addMarker(new MarkerOptions().position(thisLocation).
-                                title(whalename).snippet(timeString).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-                    }
+                }catch (ParseException ex){
+                    Log.i("Error",ex.getMessage());
                 }
 
             }

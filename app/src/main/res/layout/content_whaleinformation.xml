@@ -219,7 +219,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView"
-                android:textColor="@android:color/background_dark" />
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp" />
 
             <Space
                 android:layout_width="match_parent"

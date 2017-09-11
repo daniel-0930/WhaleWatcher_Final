@@ -83,6 +83,9 @@ public class MainActivity extends AppCompatActivity
         } else if(id == R.id.nav_report){
             Intent reportStep = new Intent(MainActivity.this, SelectionActivity.class);
             startActivity(reportStep);
+        } else if (id == R.id.nav_test){
+            Intent testStep = new Intent(MainActivity.this,TestActivity.class);
+            startActivity(testStep);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
