@@ -19,7 +19,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -92,6 +95,14 @@ public class SiteActivity extends AppCompatActivity implements OnMapReadyCallbac
     private ArrayList<WhaleLocation> minkeList;
     private ArrayList<WhaleLocation> killerList;
 
+    private RadioButton lastWeekButton;
+    private RadioButton lastMonthButton;
+    private RadioButton thisYearButton;
+    private Spinner whaleSpinner;
+    private Button resetButton;
+    private Button showButton;
+    private RadioGroup timeGroup;
+
     public static int BLUENUMBER ;
     public static int RIGHTNUMBER ;
     public static int FINNUMBER ;
@@ -163,6 +174,119 @@ public class SiteActivity extends AppCompatActivity implements OnMapReadyCallbac
         killerList = addLocationToMap("Killer Whale");
 
 
+        lastWeekButton = (RadioButton)findViewById(R.id.lastWeekRadio);
+        lastMonthButton = (RadioButton)findViewById(R.id.lastMonthRadio);
+        thisYearButton = (RadioButton)findViewById(R.id.thisYearRadio);
+        resetButton = (Button)findViewById(R.id.resetButton);
+        whaleSpinner = (Spinner)findViewById(R.id.whaleTypeSpinner);
+        showButton = (Button)findViewById(R.id.showButton);
+        timeGroup = (RadioGroup)findViewById(R.id.timeGroup);
+
+        showButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String whaleType = whaleSpinner.getSelectedItem().toString();
+                map.clear();
+                if(whaleType.equals("All")){
+                    if(lastWeekButton.isChecked()){
+                        selectLastWeekAll();
+                    } else if(lastMonthButton.isChecked()){
+                        selectLastMonthAll();
+                    } else if (thisYearButton.isChecked()){
+                        selectThisYearAll();
+                    }
+                } else {
+                    if(lastWeekButton.isChecked()){
+                        if(whaleType.equals("Blue Whale")){
+                            selectLastWeekSingle(blueList,"Blue Whale");
+                        }else if (whaleType.equals("Southern Right Whale")){
+                            selectLastWeekSingle(southernRightList,"Southern Right Whale");
+                        }else if (whaleType.equals("Fin Whale")){
+                            selectLastWeekSingle(finWhaleList,"Fin Whale");
+                        }else if (whaleType.equals("Sei Whale")){
+                            selectLastWeekSingle(seiWhaleList,"Sei Whale");
+                        }else if (whaleType.equals("Humpback Whale")){
+                            selectLastWeekSingle(humpbackList,"Humpack Whale");
+                        }else if (whaleType.equals("Sperm Whale")){
+                            selectLastWeekSingle(spermList,"Sperm Whale");
+                        }else if (whaleType.equals("Killer Whale")){
+                            selectLastWeekSingle(killerList,"Killer Whale");
+                        }else if (whaleType.equals("Minke Whale")){
+                            selectLastWeekSingle(minkeList,"Minke Whale");
+                        }
+                    } else if(lastMonthButton.isChecked()){
+                        if(whaleType.equals("Blue Whale")){
+                            selectLastMonthSingle(blueList,"Blue Whale");
+                        } else if (whaleType.equals("Southern Right Whale")){
+                            selectLastMonthSingle(southernRightList,"Southern Right Whale");
+                        }else if (whaleType.equals("Fin Whale")){
+                            selectLastMonthSingle(finWhaleList,"Fin Whale");
+                        }else if (whaleType.equals("Sei Whale")){
+                            selectLastMonthSingle(seiWhaleList,"Sei Whale");
+                        }else if (whaleType.equals("Humpback Whale")){
+                            selectLastMonthSingle(humpbackList,"Humpack Whale");
+                        }else if (whaleType.equals("Sperm Whale")){
+                            selectLastMonthSingle(spermList,"Sperm Whale");
+                        }else if (whaleType.equals("Killer Whale")){
+                            selectLastMonthSingle(killerList,"Killer Whale");
+                        }else if (whaleType.equals("Minke Whale")){
+                            selectLastMonthSingle(minkeList,"Minke Whale");
+                        }
+                    } else if (thisYearButton.isChecked()){
+                        if(whaleType.equals("Blue Whale")){
+                            selectThisYearSingle(blueList,"Blue Whale");
+                        } else if (whaleType.equals("Southern Right Whale")){
+                            selectThisYearSingle(southernRightList,"Southern Right Whale");
+                        }else if (whaleType.equals("Fin Whale")){
+                            selectThisYearSingle(finWhaleList,"Fin Whale");
+                        }else if (whaleType.equals("Sei Whale")){
+                            selectThisYearSingle(seiWhaleList,"Sei Whale");
+                        }else if (whaleType.equals("Humpback Whale")){
+                            selectThisYearSingle(humpbackList,"Humpack Whale");
+                        }else if (whaleType.equals("Sperm Whale")){
+                            selectThisYearSingle(spermList,"Sperm Whale");
+                        }else if (whaleType.equals("Killer Whale")){
+                            selectThisYearSingle(killerList,"Killer Whale");
+                        }else if (whaleType.equals("Minke Whale")){
+                            selectThisYearSingle(minkeList,"Minke Whale");
+                        }
+                    }
+                    else{
+
+                        if(whaleType.equals("Blue Whale")){
+                            selectAllSingle(blueList,"Blue Whale");
+                        } else if (whaleType.equals("Southern Right Whale")){
+                            selectAllSingle(southernRightList,"Southern Right Whale");
+                        }else if (whaleType.equals("Fin Whale")){
+                            selectAllSingle(finWhaleList,"Fin Whale");
+                        }else if (whaleType.equals("Sei Whale")){
+                            selectAllSingle(seiWhaleList,"Sei Whale");
+                        }else if (whaleType.equals("Humpback Whale")){
+                            selectAllSingle(humpbackList,"Humpack Whale");
+                        }else if (whaleType.equals("Sperm Whale")){
+                            selectAllSingle(spermList,"Sperm Whale");
+                        }else if (whaleType.equals("Killer Whale")){
+                            selectAllSingle(killerList,"Killer Whale");
+                        }else if (whaleType.equals("Minke Whale")){
+                            selectAllSingle(minkeList,"Minke Whale");
+                        }
+                    }
+                }
+            }
+        });
+
+
+
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                map.clear();
+                whaleSpinner.setSelection(0);
+                timeGroup.clearCheck();
+                selectAll();
+            }
+        });
+
     }
 
     @Override
@@ -174,15 +298,7 @@ public class SiteActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
 
-        if(item.getItemId() == R.id.last_week){
-            selectLastWeekAll();
-        } else if(item.getItemId() == R.id.last_month){
-            selectLastMonthAll();
-        } else if(item.getItemId()== R.id.this_year){
-            selectThisYearAll();
-        } else if(item.getItemId() == R.id.reset){
-            selectAll();
-        } else if (item.getItemId() == android.R.id.home)
+      if (item.getItemId() == android.R.id.home)
         {
             finish();
         }
@@ -425,7 +541,7 @@ public class SiteActivity extends AppCompatActivity implements OnMapReadyCallbac
         selectLastMonthSingle(southernRightList,"Southern Right Whale");
         selectLastMonthSingle(finWhaleList,"Fin Whale");
         selectLastMonthSingle(seiWhaleList,"Sei Whale");
-        selectLastMonthSingle(humpbackList,"Humpack Whale");
+        selectLastMonthSingle(humpbackList,"Humpback Whale");
         selectLastMonthSingle(spermList,"Sperm Whale");
         selectLastMonthSingle(minkeList,"Minke Whale");
         selectLastMonthSingle(killerList,"Killer Whale");
@@ -469,7 +585,7 @@ public class SiteActivity extends AppCompatActivity implements OnMapReadyCallbac
         selectThisYearSingle(southernRightList,"Southern Right Whale");
         selectThisYearSingle(finWhaleList,"Fin Whale");
         selectThisYearSingle(seiWhaleList,"Sei Whale");
-        selectThisYearSingle(humpbackList,"Humpack Whale");
+        selectThisYearSingle(humpbackList,"Humpback Whale");
         selectThisYearSingle(spermList,"Sperm Whale");
         selectThisYearSingle(minkeList,"Minke Whale");
         selectThisYearSingle(killerList,"Killer Whale");
@@ -497,7 +613,7 @@ public class SiteActivity extends AppCompatActivity implements OnMapReadyCallbac
         selectAllSingle(southernRightList,"Southern Right Whale");
         selectAllSingle(finWhaleList,"Fin Whale");
         selectAllSingle(seiWhaleList,"Sei Whale");
-        selectAllSingle(humpbackList,"Humpack Whale");
+        selectAllSingle(humpbackList,"Humpback Whale");
         selectAllSingle(spermList,"Sperm Whale");
         selectAllSingle(minkeList,"Minke Whale");
         selectAllSingle(killerList,"Killer Whale");

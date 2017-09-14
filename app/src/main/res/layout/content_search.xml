@@ -40,6 +40,7 @@
             android:textStyle="bold|italic" />
 
         <RadioGroup
+            android:id="@+id/lengthGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -163,11 +164,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <ListView
-        android:id="@+id/searchList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
 
 </LinearLayout>

@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -44,6 +45,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     private Button clearButton;
 
     private ListView searchList;
+    private RadioGroup lengthGroup;
 
     private WhaleSearchAdapter whaleSearchAdapter;
     private ArrayList<Whale> whaleList;
@@ -87,13 +89,10 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         searchButton = (Button)findViewById(R.id.searchButton);
         clearButton = (Button)findViewById(R.id.clearButton);
 
-        searchList = (ListView)findViewById(R.id.searchList);
+        lengthGroup = (RadioGroup)findViewById(R.id.lengthGroup);
 
         whaleList = new ArrayList<>();
-        whaleSearchAdapter = new WhaleSearchAdapter(this,whaleList);
         whale = new Whale();
-
-        searchList.setAdapter(whaleSearchAdapter);
         searchView.setOnQueryTextListener(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floatingActionButton2);
@@ -105,8 +104,6 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                 orLabel.setVisibility(View.VISIBLE);
                 selectionTable.setVisibility(View.VISIBLE);
                 currentWhaleList = new ArrayList<Whale>();
-                whaleSearchAdapter = new WhaleSearchAdapter(SearchActivity.this,currentWhaleList);
-                searchList.setAdapter(whaleSearchAdapter);
             }
         });
 
@@ -117,6 +114,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                 @Override
                 public void onClick(View v) {
                     currentWhaleList = new ArrayList<>();
+                    orLabel.setVisibility(View.GONE);
                     searchView.setVisibility(View.GONE);
                     whaleList = new ArrayList<>(databaseHelper.getAllWhale().values());
                     String month = monthSpinner.getSelectedItem().toString();
@@ -246,10 +244,9 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
                     }
                     else{
-                        // Set the table to new result list
-                        whaleSearchAdapter = new WhaleSearchAdapter(SearchActivity.this,currentWhaleList);
-                        searchList.setAdapter(whaleSearchAdapter);
-                        whaleSearchAdapter.notifyDataSetChanged();
+                        Intent newIntent = new Intent(SearchActivity.this,SearchResultActivity.class);
+                        newIntent.putParcelableArrayListExtra("currentwhaleList",currentWhaleList);
+                        startActivity(newIntent);
                     }
                 }
             });
@@ -258,9 +255,10 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             @Override
             public void onClick(View v) {
                 searchView.setVisibility(View.VISIBLE);
-                largeRadio.setChecked(false);
-                smallRadio.setChecked(false);
-                allRadio.setChecked(false);
+                lengthGroup.clearCheck();
+//                largeRadio.setChecked(false);
+//                smallRadio.setChecked(false);
+//                allRadio.setChecked(false);
 
                 blueCheck.setChecked(false);
                 whiteCheck.setChecked(false);
@@ -271,15 +269,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             }
         });
 
-        searchList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Whale whale = currentWhaleList.get(position);
-                Intent informationIntent = new Intent(SearchActivity.this,WhaleInformationActivity.class);
-                informationIntent.putExtra("whale",whale);
-                startActivity(informationIntent);
-            }
-        });
+
     }
 
     @Override
@@ -296,17 +286,16 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
                 currentWhaleList.add(w);
             }
         }
-        // When monster not found, the message will pop out
+
         if(currentWhaleList.size() == 0)
         {
             Toast.makeText(SearchActivity.this, "Whale you have searched is not existed", Toast.LENGTH_SHORT).show();
 
         }
         else{
-            // Set the table to new result list
-            whaleSearchAdapter = new WhaleSearchAdapter(this,currentWhaleList);
-            searchList.setAdapter(whaleSearchAdapter);
-            whaleSearchAdapter.notifyDataSetChanged();
+            Intent newIntent = new Intent(SearchActivity.this,SearchResultActivity.class);
+            newIntent.putParcelableArrayListExtra("currentwhaleList",currentWhaleList);
+            startActivity(newIntent);
         }
 
 

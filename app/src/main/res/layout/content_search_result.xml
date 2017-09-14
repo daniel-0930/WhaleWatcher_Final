@@ -6,13 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.a310p.radical.whalewatcher_final.GalleryActivity"
-    tools:showIn="@layout/activity_gallery">
+    tools:context="com.a310p.radical.whalewatcher_final.SearchResultActivity"
+    tools:showIn="@layout/activity_search_result">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <ListView
+        android:id="@+id/searchList"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-
 </LinearLayout>

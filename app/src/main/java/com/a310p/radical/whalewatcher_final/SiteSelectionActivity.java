@@ -134,7 +134,7 @@ public class SiteSelectionActivity extends AppCompatActivity implements OnMapRea
                     //Dialog --> sure? if sure add to firebase
                     //if not dialog dismiss
                     Calendar c = Calendar.getInstance();
-                    String timePhase = String.valueOf(c.get(Calendar.YEAR))+"/"+String.valueOf(c.get(Calendar.MONTH))
+                    String timePhase = String.valueOf(c.get(Calendar.YEAR))+"/"+String.valueOf(c.get(Calendar.MONTH)+1)
                             +"/"+String.valueOf(c.get(Calendar.DATE))+" "+String.valueOf(c.get(Calendar.HOUR_OF_DAY))
                             +":"+String.valueOf(c.get(Calendar.MINUTE))+":"+String.valueOf(c.get(Calendar.SECOND));
                     MarkerOptions options = new MarkerOptions().position(latLng)
@@ -151,7 +151,7 @@ public class SiteSelectionActivity extends AppCompatActivity implements OnMapRea
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             Calendar c = Calendar.getInstance();
-                            String time = String.valueOf(c.get(Calendar.YEAR))+"-"+String.valueOf(c.get(Calendar.MONTH))
+                            String time = String.valueOf(c.get(Calendar.YEAR))+"-"+String.valueOf(c.get(Calendar.MONTH)+1)
                                     +"-"+String.valueOf(c.get(Calendar.DATE))+"-"+String.valueOf(c.get(Calendar.HOUR_OF_DAY))
                                     +"-"+String.valueOf(c.get(Calendar.MINUTE))+"-"+String.valueOf(c.get(Calendar.SECOND));
                             WhaleLocation whaleLocation = new WhaleLocation(time,latitude,longitude);

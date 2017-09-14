@@ -24,6 +24,8 @@ import java.io.ByteArrayOutputStream;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -59,6 +61,8 @@ public class TestActivity extends AppCompatActivity {
             }
         });
 
+        storage = FirebaseStorage.getInstance();
+
         testButton1 = (Button)findViewById(R.id.testCaptureButton);
         testButton2 = (Button)findViewById(R.id.testUploadButton);
         imageView = (ImageView)findViewById(R.id.testImage);
@@ -83,7 +87,10 @@ public class TestActivity extends AppCompatActivity {
         testButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StorageReference storageRef = storage.getReference().child("whale1.jpg");
+                DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference().child("Gallery");
+                String uid = dbReference.push().getKey();
+                dbReference.child(uid).setValue(uid);
+                StorageReference storageRef = storage.getReference().child("whale").child(uid+".jpg");
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 thisWillBeUpload.compress(Bitmap.CompressFormat.JPEG,100,baos);
                 byte[] data = baos.toByteArray();

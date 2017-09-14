@@ -9,7 +9,8 @@
         android:id="@+id/whaleImage"
         android:layout_width="match_parent"
         android:layout_height="91dp"
-        app:srcCompat="@android:drawable/ic_dialog_alert" />
+        app:srcCompat="@android:drawable/ic_dialog_alert"
+        android:layout_weight="0.13" />
 
     <TextView
         android:id="@+id/whaleItemName"
@@ -24,4 +25,8 @@
         android:layout_height="wrap_content"
         android:text="Null"
         android:textSize="14sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
 </LinearLayout>
