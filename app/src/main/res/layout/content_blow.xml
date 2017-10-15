@@ -8,40 +8,115 @@
     tools:context="com.a310p.radical.whalewatcher_final.BlowActivity"
     tools:showIn="@layout/activity_blow">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/blueblow"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/blueblow" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/humpbackblow"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/humpbackblow" />
+            <ImageView
+                android:id="@+id/blueBlow"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/blueblow" />
+            <ImageButton
+                android:id="@+id/blueBlowButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="15dp"
+                android:background="@color/cpb_white"
+                app:srcCompat="@drawable/ic_forward" />
+        </LinearLayout>
 
-        <ImageView
-            android:id="@+id/killerblow"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/killerblow" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/rightblow"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/rightblow" />
+            <ImageView
+                android:id="@+id/humpbackBlow"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/humpbackblow" />
+            <ImageButton
+                android:id="@+id/humpbackBlowButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="15dp"
+                android:background="@color/cpb_white"
+                app:srcCompat="@drawable/ic_forward" />
+        </LinearLayout>
 
-        <ImageView
-            android:id="@+id/spermblow"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/spermblow" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/killerBlow"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/killerblow" />
+            <ImageButton
+                android:id="@+id/killerBlowButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="15dp"
+                android:background="@color/cpb_white"
+                app:srcCompat="@drawable/ic_forward" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/rightBlow"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/rightblow" />
+            <ImageButton
+                android:id="@+id/rightBlowButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="15dp"
+                android:background="@color/cpb_white"
+                app:srcCompat="@drawable/ic_forward" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/spermBlow"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/spermblow" />
+            <ImageButton
+                android:id="@+id/spermBlowButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="15dp"
+                android:background="@color/cpb_white"
+                app:srcCompat="@drawable/ic_forward" />
+        </LinearLayout>
+
     </LinearLayout>
 </ScrollView>

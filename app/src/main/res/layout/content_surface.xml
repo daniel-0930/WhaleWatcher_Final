@@ -5,54 +5,158 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:orientation="vertical"
     tools:context="com.a310p.radical.whalewatcher_final.SurfaceActivity"
     tools:showIn="@layout/activity_surface">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/surffin"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/surffin" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/surfsei"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/surfhumpback" />
+            <ImageView
+                android:id="@+id/surfFin"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/surffin"
+                android:layout_weight="0.13" />
 
-        <ImageView
-            android:id="@+id/surfminke"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/surfminke" />
+            <ImageButton
+                android:id="@+id/surfFinButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="15dp"
+                android:background="@color/cpb_white"
+                app:srcCompat="@drawable/ic_forward" />
+        </LinearLayout>
 
-        <ImageView
-            android:id="@+id/surfblue"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/surfblue" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/surfkiller"
+            <ImageView
+                android:id="@+id/surfSei"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/surfhumpback" />
+            <ImageButton
+                android:id="@+id/surfSeiButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="15dp"
+                android:background="@color/cpb_white"
+                app:srcCompat="@drawable/ic_forward" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/surfkiller" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/surfright"
+            <ImageView
+                android:id="@+id/surfMinke"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/surfminke" />
+            <ImageButton
+                android:id="@+id/surfMinkeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="15dp"
+                android:background="@color/cpb_white"
+                app:srcCompat="@drawable/ic_forward" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/surfright" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/surfsperm"
+            <ImageView
+                android:id="@+id/surfBlue"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/surfblue" />
+            <ImageButton
+                android:id="@+id/surfBlueButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="15dp"
+                android:background="@color/cpb_white"
+                app:srcCompat="@drawable/ic_forward" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/surfsperm" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/surfKiller"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/surfkiller" />
+            <ImageButton
+                android:id="@+id/surfKillerButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="15dp"
+                android:background="@color/cpb_white"
+                app:srcCompat="@drawable/ic_forward" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/surfRight"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/surfright" />
+            <ImageButton
+                android:id="@+id/surfRightButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="15dp"
+                android:background="@color/cpb_white"
+                app:srcCompat="@drawable/ic_forward" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/surfSperm"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/surfsperm" />
+            <ImageButton
+                android:id="@+id/surfSpermButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="15dp"
+                android:background="@color/cpb_white"
+                app:srcCompat="@drawable/ic_forward" />
+        </LinearLayout>
+
     </LinearLayout>
 </ScrollView>

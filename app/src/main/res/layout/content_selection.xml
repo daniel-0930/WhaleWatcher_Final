@@ -4,49 +4,134 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.a310p.radical.whalewatcher_final.SelectionActivity"
-    tools:showIn="@layout/activity_selection"
-    android:orientation="vertical">
+    tools:showIn="@layout/activity_selection">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="casual"
-            android:text="Which Characteristic did you Remember"
-            android:textColor="@android:color/background_dark"
-            android:textSize="36sp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:text="Start With:"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="24dp"
+        android:textStyle="bold" />
 
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+    <ListView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:id="@+id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"></ListView>
 
-            <RadioButton
-                android:id="@+id/blowRadio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif"
-                android:text="Blow Type"
-                android:textSize="30sp" />
+    <!--<TextView-->
+        <!--android:id="@+id/textView2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:fontFamily="casual"-->
+        <!--android:text="Which type of Style you would like to start?"-->
+        <!--android:textColor="@android:color/background_dark"-->
+        <!--android:textSize="30sp"-->
+        <!--android:textStyle="bold" />-->
 
-            <RadioButton
-                android:id="@+id/surfaceRadio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Surfacing Type"
-                android:textSize="30sp" />
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+    <!--<FrameLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
 
-            <RadioButton
-                android:id="@+id/diveRadio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Diving Type"
-                android:textSize="30sp" />
-        </RadioGroup>
-    </LinearLayout>
+        <!--<ImageButton-->
+            <!--android:id="@+id/blowButton"-->
+            <!--android:layout_width="150dp"-->
+            <!--android:layout_height="150dp"-->
+            <!--android:layout_marginLeft="25dp"-->
+            <!--android:layout_marginRight="15dp"-->
+            <!--android:layout_marginTop="30dp"-->
+            <!--android:background="?attr/selectableItemBackgroundBorderless"-->
+            <!--android:scaleType="fitXY"-->
+            <!--app:srcCompat="@drawable/blow" />-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom|center_horizontal"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:clickable="false"-->
+            <!--android:text="Blow Type"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textStyle="bold"></TextView>-->
+    <!--</FrameLayout>-->
+
+
+    <!--<FrameLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <!--<ImageButton-->
+            <!--android:id="@+id/divingButton"-->
+            <!--android:layout_width="150dp"-->
+            <!--android:layout_height="150dp"-->
+            <!--android:layout_marginLeft="15dp"-->
+            <!--android:layout_marginRight="25dp"-->
+            <!--android:layout_marginTop="30dp"-->
+            <!--android:background="?attr/selectableItemBackgroundBorderless"-->
+            <!--android:scaleType="fitXY"-->
+            <!--app:srcCompat="@drawable/diving" />-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom|center_horizontal"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:clickable="false"-->
+            <!--android:text="Diving Type"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textStyle="bold"></TextView>-->
+
+
+
+    <!--</FrameLayout>-->
+
+
+
+    <!--</LinearLayout>-->
+
+    <!--<FrameLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_marginTop="30dp">-->
+
+        <!--<ImageButton-->
+            <!--android:id="@+id/surfaceButton"-->
+            <!--android:layout_width="150dp"-->
+            <!--android:layout_height="150dp"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--app:srcCompat="@drawable/surfacing" />-->
+
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom|center_horizontal"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:clickable="false"-->
+            <!--android:text="Surfacing Type"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textStyle="bold"></TextView>-->
+
+
+    <!--</FrameLayout>-->
+
+
+
+</LinearLayout>
 

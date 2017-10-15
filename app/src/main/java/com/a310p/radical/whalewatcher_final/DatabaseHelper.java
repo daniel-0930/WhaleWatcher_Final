@@ -182,7 +182,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "situated on the left side of the head near the tip. Sperm Whales have the largest brain of any animal, however, compared to " +
                 "their large body size, the brain is not exceptional in size. "
                 +"Sperm Whales, like other toothed whales, are gregarious and live in groups of up to 50 individuals, although male Sperm Whales are sometimes solitary in high latitudes";
-        pictureurl = "http://www.fisheries.noaa.gov/pr/images/cetaceans/spermwhale_timcole_nmfs.jpg";
+        pictureurl = "http://elelur.com/data_images/mammals/sperm-whale/sperm-whale-04.jpg";
         addWhale(new Whale(5, name,length, weight, shortDiscrip, possiblesite, possibleMonth, feature, scientificName, habitat, description, pictureurl));
 
         //whale 6
@@ -228,7 +228,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         name = "Minke Whale";
         length = 9;
         weight = 10000;
-        shortDiscrip = "Known";
+        shortDiscrip = "Known as the smallest member of the rorquals and the second smallest species of baleen whale.";
         possiblesite = "Antarctic Minke Whales have been recorded from all States but not in the Northern Territory. Antarctic Minke Whales are currently considered to occur in one location, although taxonomic confusion within the Minke Whales and possible future taxonomic revision of this genus may lead to changes in understanding the stock structure of the Antarctic Minke Whale.";
         possibleMonth = "June,July,August,December,Janurary,Feburary";
         feature = "dark bluish-grey back,  pale grey to white flanks and belly, light grey colour on their flippers, tail flukes is white";
@@ -242,7 +242,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "the blowhole. The flippers are slim and pointed, with no white blaze on the upper surface. Some individuals have a " +
                 "two-tone light grey colour on their flippers. Both flipper colour patterns can be present in an individual. " +
                 "The underside of the flippers and the tail flukes is white.";
-        pictureurl = "http://www.antarctica.gov.au/__data/assets/image/0003/28902/varieties/antarctic.jpg ";
+        pictureurl = "http://cdn.blog.queensland.com/wp-content/uploads/2017/04/minke-whales-11.jpg";
         addWhale(new Whale(8, name,length, weight, shortDiscrip, possiblesite, possibleMonth, feature, scientificName, habitat, description, pictureurl));
 
         //whale 9
@@ -269,7 +269,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "paddle-shaped. In addition to sexual size dimorphism, male Killer Whale appendages are disproportionately larger than " +
                 "in females. Adult male and female Killer Whales attain weights exceeding 4000 kg and 3100 kg, and lengths of 9.8 m " +
                 "and 8.5–9.2 m, respectively.";
-        pictureurl = "https://www.afsc.noaa.gov/nmml/gallery/cetaceans/images/nmmlweb-killerwhale-8.jpg ";
+        pictureurl = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Killerwhales_jumping.jpg/1200px-Killerwhales_jumping.jpg";
         addWhale(new Whale(9, name,length, weight, shortDiscrip, possiblesite, possibleMonth, feature, scientificName, habitat, description, pictureurl));
     }
 }

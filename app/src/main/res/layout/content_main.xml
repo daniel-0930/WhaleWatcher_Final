@@ -7,23 +7,36 @@
     android:background="@drawable/homebackground"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.a310p.radical.whalewatcher_final.MainActivity"
-    tools:showIn="@layout/app_bar_main"
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp">
 
-    <Button
-        android:id="@+id/startButton"
-        style="@style/Widget.AppCompat.Button.Colored"
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="match_parent" />
+
+    <at.markushi.ui.CircleButton
+        android:id="@+id/nearestButton"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_above="@+id/bmb"
+        android:layout_alignLeft="@+id/bmb"
+        android:layout_alignStart="@+id/bmb"
+        android:src="@drawable/ic_near"
+        app:cb_color="#FFFFFF"
+        app:cb_pressedRingWidth="10dp" />
+    <com.nightonke.boommenu.BoomMenuButton
+        android:id="@+id/bmb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:text="Start Here!"
-        android:textAlignment="center"
-        tools:layout_editor_absoluteX="137dp"
-        tools:layout_editor_absoluteY="231dp" />
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="30dp"
+        app:bmb_buttonEnum="textOutsideCircle"
+        app:bmb_piecePlaceEnum="piecePlace_dot_6_1"
+        app:bmb_buttonPlaceEnum="buttonPlace_sc_6_1"
+        />
 
 </RelativeLayout>

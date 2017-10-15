@@ -73,6 +73,8 @@ public class SiteSelectionActivity extends AppCompatActivity implements OnMapRea
 
     private String whalename;
 
+    private String uri,type,comments,name;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -83,16 +85,18 @@ public class SiteSelectionActivity extends AppCompatActivity implements OnMapRea
             cameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
         }
 
+        Intent i = getIntent();
+        uri = i.getStringExtra("uri");
+        type = i.getStringExtra("type");
+        comments = i.getStringExtra("comment");
+        name = i.getStringExtra("name");
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.siteselectionToolbar);
         setSupportActionBar(toolbar);
         if(getSupportActionBar()!=null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-
-        Intent whaleIntent = getIntent();
-        whalename = whaleIntent.getStringExtra("whalename");
-
 
         geoDataClient = Places.getGeoDataClient(this,null);
         placeDetectionClient = Places.getPlaceDetectionClient(this,null);
@@ -120,14 +124,14 @@ public class SiteSelectionActivity extends AppCompatActivity implements OnMapRea
         updateLocationUI();
 
         getDeviceLocation();
-        showADialog("Congratulations!","Lucky! You saw a "+whalename+"\n Please LONG PRESS to add the Location of "+whalename);
-
+        showADialog("Saw a whale here?","Please LONG PRESS to select the place you saw a whale.");
         map.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
             public void onMapLongClick(LatLng latLng) {
 
 
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,13));
+
                 if(!checkLocationInTheSea(latLng)){
                     showADialog("Wrong Place!","Whales could not live without SEA!");
                 } else{
@@ -150,38 +154,23 @@ public class SiteSelectionActivity extends AppCompatActivity implements OnMapRea
                     builder.setPositiveButton("Sure", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            Calendar c = Calendar.getInstance();
-                            String time = String.valueOf(c.get(Calendar.YEAR))+"-"+String.valueOf(c.get(Calendar.MONTH)+1)
-                                    +"-"+String.valueOf(c.get(Calendar.DATE))+"-"+String.valueOf(c.get(Calendar.HOUR_OF_DAY))
-                                    +"-"+String.valueOf(c.get(Calendar.MINUTE))+"-"+String.valueOf(c.get(Calendar.SECOND));
-                            WhaleLocation whaleLocation = new WhaleLocation(time,latitude,longitude);
-                            if(whalename.equals("Blue Whale")){
-                                DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference("Blue Whale").child(String.valueOf(SiteActivity.BLUENUMBER+1));
-                                dbReference.setValue(whaleLocation);
-                            } else if(whalename.equals("Fin Whale")){
-                                DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference("Fin Whale").child(String.valueOf(SiteActivity.FINNUMBER+1));
-                                dbReference.setValue(whaleLocation);
-                            } else if(whalename.equals("Humpback Whale")){
-                                DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference("Humpback Whale").child(String.valueOf(SiteActivity.HUMPBAKCNUMBER+1));
-                                dbReference.setValue(whaleLocation);
-                            }else if(whalename.equals("Killer Whale")){
-                                DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference("Killer Whale").child(String.valueOf(SiteActivity.KILLERNUMBER+1));
-                                dbReference.setValue(whaleLocation);
-                            }else if(whalename.equals("Minke Whale")){
-                                DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference("Minke Whale").child(String.valueOf(SiteActivity.MINKENUMBER+1));
-                                dbReference.setValue(whaleLocation);
-                            }else if(whalename.equals("Sei Whale")){
-                                DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference("Sei Whale").child(String.valueOf(SiteActivity.SEINUMBER+1));
-                                dbReference.setValue(whaleLocation);
-                            }else if(whalename.equals("Southern Right Whale")){
-                                DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference("Southern Right Whale").child(String.valueOf(SiteActivity.RIGHTNUMBER+1));
-                                dbReference.setValue(whaleLocation);
-                            }else if(whalename.equals("Sperm Whale")){
-                                DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference("Sperm Whale").child(String.valueOf(SiteActivity.SPERMNUMBER+1));
-                                dbReference.setValue(whaleLocation);
-                            }
 
-                            Intent newIntent = new Intent(SiteSelectionActivity.this,SiteActivity.class);
+                            String location = String.valueOf(latitude)+","+String.valueOf(longitude);
+
+                            Intent newIntent = new Intent(SiteSelectionActivity.this,ReportActivity.class);
+                            newIntent.putExtra("location",location);
+                            if(name != null){
+                                newIntent.putExtra("nameback",name);
+                            }
+                            if(type != null){
+                                newIntent.putExtra("typeback",type);
+                            }
+                            if(uri != null){
+                                newIntent.putExtra("uriback",uri);
+                            }
+                            if(comments != null){
+                                newIntent.putExtra("commentback",comments);
+                            }
                             startActivity(newIntent);
                             finish();
                         }

@@ -31,21 +31,58 @@
         <item>Sei Whale</item>
         <item>Southern Right Whale</item>
         <item>Sperm Whale</item>
-
+        <item>Other</item>
     </string-array>
 
+    <string-array name="whale2">
+        <item>----------Whale Type----------</item>
+        <item>Unknown</item>
+        <item>Blue Whale</item>
+        <item>Fin Whale</item>
+        <item>Humpback Whale</item>
+        <item>Killer Whale</item>
+        <item>Minke Whale</item>
+        <item>Sei Whale</item>
+        <item>Southern Right Whale</item>
+        <item>Sperm Whale</item>
+        <item>Other</item>
+    </string-array>
 
+    <string-array name="whale3">
+        <item>----------Whale Type----------</item>
+        <item>All</item>
+        <item>Blue Whale</item>
+        <item>Fin Whale</item>
+        <item>Humpback Whale</item>
+        <item>Killer Whale</item>
+        <item>Minke Whale</item>
+        <item>Sei Whale</item>
+        <item>Southern Right Whale</item>
+        <item>Sperm Whale</item>
+        <item>Other</item>
+    </string-array>
 
+    <string-array name="time">
+        <item>----------Time Filter----------</item>
+        <item>All Time</item>
+        <item>Last Spring</item>
+        <item>Last Summer</item>
+        <item>Last Autumn</item>
+        <item>Last Winter</item>
+        <item>Last Year</item>
+        <item>Last Week</item>
+        <item>Last Month</item>
+        <item>This Year</item>
+    </string-array>
 
-
-    <string name="title_activity_blow">Blow Type</string>
-    <string name="title_activity_surface">Surfacing Type</string>
-    <string name="title_activity_dive">Diving Type</string>
+    <string name="title_activity_blow">Search - by blowing</string>
+    <string name="title_activity_surface">Search - by surfacing</string>
+    <string name="title_activity_dive">Search - by diving</string>
     <string name="title_activity_search">Search For Whales Information</string>
-    <string name="title_activity_list_whale">ListWhaleActivity</string>
+    <string name="title_activity_list_whale">Whales</string>
     <string name="title_activity_site">Find a Whale Site</string>
     <string name="title_activity_whale_information">Whale Information</string>
-    <string name="title_activity_selection">Selecting the type of Whale</string>
+    <string name="title_activity_selection">Search Whale</string>
     <string name="title_acitivity_siteselection">Pin the Location you saw a Whale</string>
     <string name="title_activity_gallery">Gallery of Whale</string>
     <string name="title_activity_about_us">About Us</string>
@@ -54,4 +91,27 @@
     <string name="title_activity_test">TestActivity</string>
     <string name="title_activity_whale_image">WhaleImageActivity</string>
     <string name="title_activity_search_result">SearchResultActivity</string>
+    <string name="title_activity_report">Report Sighting</string>
+    <string name="title_activity_twitter">Twitter News</string>
+    <string name="title_activity_tour">TourActivity</string>
+    <string name="title_activity_agency_detail2">Tour Agency Details</string>
+    <string name="title_activity_agency2">Tour Agency List</string>
+
+    <string name="report">Search Whale</string>
+    <string name="dolphin">Whale Detail</string>
+    <string name="about">Report Sighting</string>
+    <string name="search">Whale News</string>
+    <string name="contact">Tour Agency</string>
+    <string name="spot">About us</string>
+
+
+    <string name="title_about_us_2"><a href="https://www.google.com/maps/d/u/0/viewer?mid=1btvEVLs_vqVG_DRD9pFkx3AOrRI%2cll=-38.48295571273258%2C145.204496383667%2cz=12">Whale Location</a></string>
+    <string name="title_about_us_3"><a href="http://www.environment.gov.au/marine/marine-species/cetaceans/whale-and-dolphin-watching">Australian Government Department of the Environment and Energy</a></string>
+    <string name="title_about_us_4"><a href="https://www.afsc.noaa.gov/nmml/species/index_ceta.php">Alaska Fisheries Science Center</a></string>
+    <string name="title_about_us_5"><a href="https://developers.google.com/maps/documentation/android-api/">Google Map Api V2 for Android</a></string>
+    <string name="title_about_us_6"><a href="https://dev.twitter.com/twitterkit/android/overview">Twitter Kit for Android</a></string>
+    <string name="title_about_us_7"><a href="https://github.com/wasabeef/awesome-android-ui">Awesome Android ui</a></string>
+    <string name="title_activity_report2">Report Siting</string>
+
+
 </resources>
